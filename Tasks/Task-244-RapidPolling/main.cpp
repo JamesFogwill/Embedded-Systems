@@ -45,7 +45,8 @@ int main()
     int btnB_curr;
     
     microseconds tm = tmr.elapsed_time();   //Part of the C++ chrono class
-    
+  
+
     while (true) {
 
         // ************************************
@@ -99,16 +100,19 @@ int main()
             disp = count;              
         }
 
-        // LED
-        if (tm >= 250ms) {
+        // Led
+        microseconds tmA = 90ms + (count+1)*10ms;
+
+        if (tm >= tmA){
             greenLED = !greenLED;
             tmr.reset();
-        }
-        
+            }
+
         // Slow it down a bit (and debounce the switches)
         wait_us(50000);  
     }
 }
+
 
 
 

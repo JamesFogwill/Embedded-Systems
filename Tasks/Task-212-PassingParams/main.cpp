@@ -57,6 +57,17 @@ ComplexNumber_C complexDivide(const ComplexNumber_C a, const ComplexNumber_C b)
     return y;
 }
 
+ComplexNumber_C complexConjugateInPlace(ComplexNumber_C& a)
+{
+    a.imag = -a.imag;
+}
+
+ComplexNumber_C complexNegateInPlace(ComplexNumber_C& a)
+{
+    a.imag = -a.imag;
+    a.real = -a.real;
+}
+
 void complexDisplay(const char *strName, const ComplexNumber_C u) {
     printf("%s = %f + j%f\n", strName, u.real, u.imag);
 }
@@ -95,7 +106,12 @@ int main() {
     ComplexNumber_C negate = complexNegate(p);
     complexDisplay("p negate", negate);
 
-    
+    ComplexNumber_C conInPlace = complexConjugateInPlace(p);
+    complexDisplay("p conjugate in place", p);
+
+    ComplexNumber_C negInPlace = complexNegateInPlace(p);
+    complexDisplay("p negate in place", p);
+
     while (true) {
     }
 }
