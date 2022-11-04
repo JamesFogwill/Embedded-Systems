@@ -18,13 +18,72 @@ Timer tmrA;
 Timer tmrB;
 Timer tmrLED;
 
+// Storage for input devices
+typedef enum {WAITING_FOR_PRESS, DEBOUNCE_1, WAITING_FOR_RELEASE, DEBOUNCE_2} SWITCH_STATE;
+
+class Button{
+private:
+
+    SWITCH_STATE state;
+
+public:
+
+    Button(){
+        SWITCH_STATE state = WAITING_FOR_PRESS;
+    }
+
+    void stateChange()
+    {
+        switch (state) {
+            case WAITING_FOR_PRESS:
+                if (btnA == 1) {
+                    state = DEBOUNCE_1;
+                    tmrA.reset();
+                    tmrA.start();
+                    if (count < 99) {
+                        disp = ++count;
+                    }
+                }
+            break;
+
+            case DEBOUNCE_1:
+                if (timeA >= 50ms) {
+                    state = WAITING_FOR_RELEASE;
+                    tmrA.stop();
+                }
+            break;
+
+            case WAITING_FOR_RELEASE:
+                if (btnA == 0) {
+                    state = DEBOUNCE_2;
+                    tmrA.reset();
+                    tmrA.start();
+                }
+            break;
+
+            case DEBOUNCE_2:
+                if (time >= 50ms) {
+                    state = WAITING_FOR_PRESS;
+                    tmrA.stop();
+                }
+            break;
+        }
+
+    }
+
+}
+
+
 int main()
 {
     volatile int count = 0;
 
+    Button butA();
+    Button butB();
+
     // This little C++ trick allows us to use BOTH BusIn and DigitalIn
-    DigitalIn& buttonA = buttons[0];    //ButtonA is synonamous with buttons[0]
-    DigitalIn& buttonB = buttons[1];
+    DigitalIn& butA = buttons[0];  //ButtonA is synonamous with buttons[0]
+    DigitalIn& butB = buttons[1];
     DigitalIn& buttonC = buttons[2];
     DigitalIn& buttonD = buttons[3];
 
@@ -34,13 +93,6 @@ int main()
 
     //Turn ON the 7-segment display
     disp.enable(true);
-
-    // Storage for input devices
-    typedef enum {WAITING_FOR_PRESS, DEBOUNCE_1, WAITING_FOR_RELEASE, DEBOUNCE_2} SWITCH_STATE;
-
-    //Where we are in the sequence (Press - wait - release - wait)
-    SWITCH_STATE stateA = WAITING_FOR_PRESS;
-    SWITCH_STATE stateB = WAITING_FOR_PRESS;
 
     // Input storage variables
     int btnA = 0;
@@ -68,40 +120,7 @@ int main()
         // UPDATE "STATE" for button A
         // ***************************
 
-        switch (stateA) {
-            case WAITING_FOR_PRESS:
-                if (btnA == 1) {
-                    stateA = DEBOUNCE_1;
-                    tmrA.reset();
-                    tmrA.start();
-                    if (count < 99) {
-                        disp = ++count;
-                    }
-                }
-            break;
-
-            case DEBOUNCE_1:
-                if (timeA >= 50ms) {
-                    stateA = WAITING_FOR_RELEASE;
-                    tmrA.stop();
-                }
-            break;
-
-            case WAITING_FOR_RELEASE:
-                if (btnA == 0) {
-                    stateA = DEBOUNCE_2;
-                    tmrA.reset();
-                    tmrA.start();
-                }
-            break;
-
-            case DEBOUNCE_2:
-                if (timeA >= 50ms) {
-                    stateA = WAITING_FOR_PRESS;
-                    tmrA.stop();
-                }
-            break;            
-        }
+        
 
         // ***************************
         // UPDATE "STATE" for button B

@@ -72,6 +72,10 @@ public:
         return ComplexNumber(this->real+c.real, this->imag+c.imag);
     }
     
+    ComplexNumber negate(const ComplexNumber& c){
+        
+    }
+
     //Display
     void display() {
         cout << this->real << " + " << this->imag << "j" << endl;

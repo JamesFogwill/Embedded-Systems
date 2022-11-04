@@ -16,6 +16,10 @@ int main(int argc, const char * argv[]) {
     updateWeight(&person, 75.0);
     displayHuman(&person);
 
+    Human* Ptr;
+    Ptr = &person;
+    Ptr->bmi = 46;
+
     return 0;
 }
 
