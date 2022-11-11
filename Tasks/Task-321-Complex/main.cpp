@@ -1,5 +1,6 @@
 #include "mbed.h"
 #include "ComplexNumber.hpp"
+#include <cstdio>
 
 // main() runs in its own thread in the OS
 int main()
@@ -10,7 +11,8 @@ int main()
     c1.add(c2);   //c1 = c1 + c2
     c1.display();
     c1_copy.display();
-    c1.addedTo(c2);
+    ComplexNumber fred = c1.addedTo(c2);
+    printf("fred = %f %f",fred.getReal(),fred.getImag());
     c1.display();
 
     c1.negate();
@@ -23,9 +25,15 @@ int main()
     c1.subtractFrom(c2);
     c1.display();
 
+    c1.multiply(c2);
+    c1.display();
+    c1.multiplyWith(c2);
+    c1.display();
+
     c1.divide(c2);
     c1.display();
-    c1.divideFrom(c2)
+    c1.divideWith(c2);
+    c1.display();
     
     ComplexNumber c3 = c1.addedTo(c2);
     c3.conjugate();

@@ -69,7 +69,7 @@ public:
     
     //Add
     ComplexNumber addedTo(const ComplexNumber& c) {
-        return ComplexNumber(this->real+c.real, this->imag+c.imag);
+        return ComplexNumber(this->real+=c.real, this->imag+=c.imag);
     }
     //negate
     void negate(){
@@ -88,7 +88,7 @@ public:
     }
 
     ComplexNumber subtractFrom(const ComplexNumber& c){
-        return ComplexNumber(this->real-c.real, this->imag-c.imag);
+        return ComplexNumber(this->real-=c.real, this->imag-=c.imag);
     }
 
     void multiply(ComplexNumber& c){
@@ -96,8 +96,8 @@ public:
         this->imag *= c.imag;
     }
 
-    ComplexNumber multiplyFrom(const ComplexNumber& c){
-        return ComplexNumber(this->real*c.real, this->imag*c.imag);
+    ComplexNumber multiplyWith(const ComplexNumber& c){
+        return ComplexNumber(this->real*=c.real, this->imag*=c.imag);
     }
 
     void divide(ComplexNumber& c){
@@ -105,8 +105,8 @@ public:
         this->imag/=c.imag;
     }
 
-    ComplexNumber divideFrom(const ComplexNumber& c){
-        return ComplexNumber(this->real/c.real, this->imag/c.imag);
+    ComplexNumber divideWith(const ComplexNumber& c){
+        return ComplexNumber(this->real/=c.real, this->imag/=c.imag);
     }
     
     //Display
