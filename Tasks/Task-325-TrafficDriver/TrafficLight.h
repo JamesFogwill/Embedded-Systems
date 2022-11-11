@@ -19,6 +19,7 @@ class TrafficLight
     DigitalOut greenLED;
     Ticker t;
     LIGHT_STATE State;
+    double flashSpeedms = 200;
 
     void yellowFlashISR();
     void flashYellow(bool flash);
@@ -30,6 +31,15 @@ class TrafficLight
 
     //Destructor
     ~TrafficLight();
+
+    //Member function
+    void stop();
+
+    //member funciton
+    void setFlashSpeed(double);
+
+    //member function
+    double getFlashSpeed();
 
     //Advance the traffic lights to the next state
     LIGHT_STATE nextState();
