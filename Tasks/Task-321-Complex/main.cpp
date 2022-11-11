@@ -10,6 +10,22 @@ int main()
     c1.add(c2);   //c1 = c1 + c2
     c1.display();
     c1_copy.display();
+    c1.addedTo(c2);
+    c1.display();
+
+    c1.negate();
+    c1.display();
+    c1.negated();
+    c1.display();
+
+    c1.subtract(c2);
+    c1.display();
+    c1.subtractFrom(c2);
+    c1.display();
+
+    c1.divide(c2);
+    c1.display();
+    c1.divideFrom(c2)
     
     ComplexNumber c3 = c1.addedTo(c2);
     c3.conjugate();
