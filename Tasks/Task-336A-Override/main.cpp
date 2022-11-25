@@ -23,6 +23,7 @@ int main()
 
     //Challenge - try and understand this ;)
     cout << c1.asDoubleNumber().asString() << endl;
+    //the above line takes the double number c1 and outputs its own address, then if the asString has a parameter that is complex or imaginary it will add that part and output the numbers together in complex number form so with the + and j. Check with Nick if this is correct.
 
     //TODO - write an overloaded + operator
     DoubleNumber sum1 = c0 + c1 + d0 + d1;
