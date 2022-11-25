@@ -2,6 +2,7 @@
 #include <cmath>
 #include <iostream>
 #include <math.h>
+#include <ostream>
 #include <string.h>
 #include <string>
 
@@ -84,9 +85,15 @@ public:
     }
     bool operator==(DoubleNumber& u)
     {
-        // Return a true if u is equal to `this`
-        // ** TO BE DONE BY THE STUDENT **
-        return false;
+        DoubleNumber result;
+        result = *this;
+        if (result == u.getValue()){
+            return true;
+        }
+
+        else {
+            return false;
+        }
     }
 
     operator double() {
@@ -112,6 +119,7 @@ int main()
 
     DoubleNumber sum = (n0 + n1 + n2 + n3);
     cout << sum << endl;
+    cout << n1.getValue() << endl;
 
     while (true) {
 

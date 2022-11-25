@@ -42,8 +42,14 @@ public:
     void setValue(string strVal) {
         _real = stod(strVal);
     }
-    void setValue(DoubleNumber u){
-        _real = u._real;
+    //my way is below
+    //void setValue(DoubleNumber u){
+    //    _real = u._real;
+    //}
+    
+    //This is nicks way
+    void setValue(DoubleNumber& u) {
+        this->setValue(u.getValue());
     }
 
     double getValue() {

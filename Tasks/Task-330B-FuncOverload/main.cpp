@@ -7,9 +7,10 @@ using namespace chrono;
 class Flashy {
     private:
     //Composition in action here
+    /// Leds object led is made here and ticker
     DigitalOut led;
+    //
     Ticker tick;
-    //Internal state
     microseconds _interval;
     PinName _pin;
     bool _enabled = false;
