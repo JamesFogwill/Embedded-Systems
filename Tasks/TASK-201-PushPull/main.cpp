@@ -6,9 +6,9 @@
 #define TRAF_RED1_PIN PC_2
 
 // Objects
-DigitalOut grn(TRAF_GRN1_PIN);
-DigitalOut yel(TRAF_YEL1_PIN);
-DigitalOut red(TRAF_RED1_PIN,1);
+DigitalOut grn(TRAF_GRN1_PIN,1);
+DigitalOut yel(TRAF_YEL1_PIN,1);
+DigitalOut red(TRAF_RED1_PIN,1); // turns red led on before enetering main.
 
 int main()
 {
